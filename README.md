@@ -17,7 +17,7 @@ kubectl apply -f ./pipeline/clone-scan-issue.yaml
 ```
 kubectl create secret generic git-creds --from-literal gh-token=xxxxxxx
 ```
-Note: update `./pipelinerun/clone-scan-issue-run.yaml` referencing a existing repo
+Note: update `./pipelinerun/clone-scan-issue-run.yaml` referencing an existing repo
 ```
 kubectl apply -f ./pipelinerun/clone-scan-issue-run.yaml
 ```
