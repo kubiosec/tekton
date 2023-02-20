@@ -1,0 +1,21 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+    generateName: clone-scan-issue-run-
+spec:
+  pipelineRef:
+    name: clone-scan-issue
+  params:
+  - name: gh-url
+    value: "https://github.com/xxradar/mydemo.git"
+  - name: git-creds
+    value: git-creds
+  workspaces:
+  - name: shared-data
+    volumeClaimTemplate:
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
