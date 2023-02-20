@@ -1,0 +1,27 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: gh-issue
+spec:
+  params:
+  - name: gh-url
+    type: string
+  - name: git-creds
+    type: string
+  workspaces:
+  - name: storage
+    readOnly: false
+  steps:
+    - name: git-issue
+      image: xxradar/ghcli:001
+      env:
+      - name: GITHUB_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: $(params.git-creds)
+            key: gh-token
+      script: |
+        #!/bin/bash
+        gh auth setup-git
+        cd $(workspaces.storage.path)/repo
+        gh issue create --title "issue" -F $(workspaces.storage.path)/results/results.txt
