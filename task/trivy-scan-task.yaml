@@ -1,0 +1,13 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: trivy-scan
+spec:
+  workspaces:
+  - name: storage
+    readOnly: false
+  steps:
+  - name: trivy-scan
+    image: kubiosec/trivy:0.37.3
+    script: |
+      trivy config $(workspaces.storage.path)/repo -o $(workspaces.storage.path)/results/results.txt
