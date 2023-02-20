@@ -1,0 +1,45 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: clone-scan-issue
+spec:
+  workspaces:
+  - name: shared-data
+  params:
+  - name: gh-url
+    type: string
+  - name: git-creds
+    type: string
+  tasks:
+    - name: gh-clone
+      taskRef:
+        name: gh-clone
+      params:
+      - name: gh-url
+        value: $(params.gh-url)
+      - name: git-creds
+        value: $(params.git-creds)     
+      workspaces:
+      - name: storage
+        workspace: shared-data
+    - name: trivy-scan
+      taskRef:
+        name: trivy-scan
+      runAfter:
+        - gh-clone
+      workspaces:
+      - name: storage
+        workspace: shared-data
+    - name: gh-issue
+      taskRef:
+        name: gh-issue
+      runAfter:
+        - trivy-scan
+      params:
+      - name: gh-url
+        value: $(params.gh-url)
+      - name: git-creds
+        value: $(params.git-creds)     
+      workspaces:
+      - name: storage
+        workspace: shared-data
