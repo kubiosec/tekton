@@ -8,7 +8,7 @@ spec:
     readOnly: false
     mountpath: /scan
   steps:
-  - name: fortidevsec-sast-scan
+  - name: fortidevsec-sast
     image: registry.fortidevsec.forticloud.com/fdevsec_sast:latest
     script: |
       main
