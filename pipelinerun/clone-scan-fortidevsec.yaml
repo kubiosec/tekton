@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
-    generateName: clone-scan-issue-run-
+    generateName: clone-scan-fortidevsec-run-
 spec:
   pipelineRef:
     name: clone-scan-issue
