@@ -8,7 +8,7 @@ spec:
     readOnly: false
   steps:
     - name: cleanup
-      image: xxradar/hackon
+      image: kubiosec/hackon
       script: |
         #!/bin/bash
         echo "Completed"
