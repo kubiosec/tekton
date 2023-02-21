@@ -6,9 +6,9 @@ spec:
   workspaces:
   - name: storage
     readOnly: false
-    mountpath: /scan
   steps:
   - name: fortidevsec-sast
     image: registry.fortidevsec.forticloud.com/fdevsec_sast:latest
     script: |
+      cd $(workspaces.storage.path)/repo
       main

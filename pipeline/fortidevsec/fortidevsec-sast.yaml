@@ -13,7 +13,7 @@ spec:
   tasks:
     - name: gh-clone
       taskRef:
-        name: gh-clone-fortidevsec
+        name: gh-clone
       params:
       - name: gh-url
         value: $(params.gh-url)
