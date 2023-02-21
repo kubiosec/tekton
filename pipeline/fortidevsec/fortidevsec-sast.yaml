@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: clone-scan-issue
+  name: fortidevsec-sast
 spec:
   workspaces:
   - name: shared-data
@@ -22,24 +22,16 @@ spec:
       workspaces:
       - name: storage
         workspace: shared-data
-    - name: fortidevsec-scan
+    - name: fortidevsec-sast
       taskRef:
-        name: fortidevsec-scan
+        name: fortidevsec-sast
       runAfter:
         - gh-clone
       workspaces:
       - name: storage
         workspace: shared-data
-    - name: gh-issue
+    - name: cleanup
       taskRef:
-        name: gh-issue
+        name: cleanup
       runAfter:
-        - fortidevsec-scan
-      params:
-      - name: gh-url
-        value: $(params.gh-url)
-      - name: git-creds
-        value: $(params.git-creds)
-      workspaces:
-      - name: storage
-        workspace: shared-data
+        - fortidevsec-sast
