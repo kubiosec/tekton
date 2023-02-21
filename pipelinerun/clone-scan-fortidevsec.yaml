@@ -10,6 +10,8 @@ spec:
     value: "https://github.com/xxradar/httpdtoslack.git"
   - name: git-creds
     value: git-creds
+  - name: git-repo
+    value: "repo"
   workspaces:
   - name: shared-data
     volumeClaimTemplate:

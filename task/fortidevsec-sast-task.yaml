@@ -3,6 +3,9 @@ kind: Task
 metadata:
   name: fortidevsec-sast
 spec:
+  params:
+  - name: git-repo
+    type: string
   workspaces:
   - name: storage
     readOnly: false
@@ -10,5 +13,5 @@ spec:
   - name: fortidevsec-sast
     image: registry.fortidevsec.forticloud.com/fdevsec_sast:latest
     script: |
-      cd $(workspaces.storage.path)/repo
+      cd $(workspaces.storage.path)/$(params.git-repo)
       main
