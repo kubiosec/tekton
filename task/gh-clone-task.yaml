@@ -8,6 +8,8 @@ spec:
     type: string
   - name: git-creds
     type: string
+  - name: git-repo
+    type: string
   workspaces:
   - name: storage
     readOnly: false
@@ -24,6 +26,5 @@ spec:
         #!/bin/bash
         gh auth setup-git
         cd $(workspaces.storage.path)
-        mkdir results
-        git clone $(params.gh-url) repo
-        ls $(workspaces.storage.path)/repo
+        git clone $(params.gh-url) $(params.git-repo)
+        ls $(workspaces.storage.path)/$(params.git-repo)

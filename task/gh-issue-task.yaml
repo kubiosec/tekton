@@ -8,6 +8,10 @@ spec:
     type: string
   - name: git-creds
     type: string
+  - name: git-repo
+    type: string
+  - name: result-repo
+    type: string
   workspaces:
   - name: storage
     readOnly: false
@@ -23,5 +27,5 @@ spec:
       script: |
         #!/bin/bash
         gh auth setup-git
-        cd $(workspaces.storage.path)/repo
-        gh issue create --title "issue" -F $(workspaces.storage.path)/results/results.txt
+        cd $(workspaces.storage.path)/$(params.git-repo)
+        gh issue create --title "issue" -F $(workspaces.storage.path)/$(params.result-repo)/results.txt

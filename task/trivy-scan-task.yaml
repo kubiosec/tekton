@@ -3,11 +3,18 @@ kind: Task
 metadata:
   name: trivy-scan
 spec:
+  params:
+  - name: git-repo
+    type: string
+  - name: result-repo
+    type: string
   workspaces:
   - name: storage
     readOnly: false
+
   steps:
   - name: trivy-scan
     image: kubiosec/trivy:0.37.3
     script: |
-      trivy config $(workspaces.storage.path)/repo -o $(workspaces.storage.path)/results/results.txt
+      mkdir $(workspaces.storage.path)/$(params.result-repo)
+      trivy config $(workspaces.storage.path)/$(params.git-repo) -o $(workspaces.storage.path)/$(params.result-repo)/results.txt
