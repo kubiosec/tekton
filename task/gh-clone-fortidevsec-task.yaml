@@ -1,0 +1,29 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: gh-clone-fortidevsec
+spec:
+  params:
+  - name: gh-url
+    type: string
+  - name: git-creds
+    type: string
+  workspaces:
+  - name: storage
+    readOnly: false
+    mountpath: /scan
+  steps:
+    - name: git-clone
+      image: kubiosec/ghcli:001
+      env:
+      - name: GITHUB_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: $(params.git-creds)
+            key: gh-token
+      script: |
+        #!/bin/bash
+        gh auth setup-git
+        git clone $(params.gh-url) /scan
+        ls /scan
+
