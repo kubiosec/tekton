@@ -5,7 +5,7 @@ metadata:
 spec:
   workspaces:
   - name: storage
-    readOnly: false
+    readOnly: true
   steps:
     - name: cleanup
       image: kubiosec/hackon
