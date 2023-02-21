@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: fortidevsec-sast
+spec:
+  workspaces:
+  - name: storage
+    readOnly: false
+    mountpath: /scan
+  steps:
+  - name: fortifevsec-sast-scan
+    image: registry.fortidevsec.forticloud.com/fdevsec_sast:latest
+    script: |
+      main
