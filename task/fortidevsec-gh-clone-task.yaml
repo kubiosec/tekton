@@ -11,7 +11,6 @@ spec:
   workspaces:
   - name: storage
     readOnly: false
-    mountpath: /scan
   steps:
     - name: git-clone
       image: kubiosec/ghcli:001
@@ -24,6 +23,10 @@ spec:
       script: |
         #!/bin/bash
         gh auth setup-git
-        git clone $(params.gh-url) /scan
-        ls /scan
+        cd $(workspaces.storage.path)
+        mkdir results
+        git clone $(params.gh-url) repo
+        ls $(workspaces.storage.path)/repo
+        pwd
+        ls -a $PWD/repo
 
