@@ -4,7 +4,7 @@ metadata:
     generateName: clone-scan-fortidevsec-run-
 spec:
   pipelineRef:
-    name: clone-scan-issue
+    name: fortidevsec-sast
   params:
   - name: gh-url
     value: "https://github.com/xxradar/httpdtoslack.git"
