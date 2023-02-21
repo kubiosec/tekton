@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: cleanup
+spec:
+  workspaces:
+  - name: storage
+    readOnly: false
+  steps:
+    - name: cleanup
+      image: xxradar/hackon
+      script: |
+        #!/bin/bash
+        echo "Completed"
