@@ -10,6 +10,8 @@ spec:
     type: string
   - name: git-creds
     type: string
+  - name: git-repo
+    type: string
   tasks:
     - name: gh-clone
       taskRef:
@@ -19,12 +21,17 @@ spec:
         value: $(params.gh-url)
       - name: git-creds
         value: $(params.git-creds)
+      - name: git-repo
+        value: $(params.git-repo)
       workspaces:
       - name: storage
         workspace: shared-data
     - name: fortidevsec-sast
       taskRef:
         name: fortidevsec-sast
+      params:
+      - name: git-repo
+        value: $(params.git-repo)
       runAfter:
         - gh-clone
       workspaces:

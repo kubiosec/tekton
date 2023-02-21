@@ -10,6 +10,10 @@ spec:
     value: "https://github.com/xxradar/mydemo.git"
   - name: git-creds
     value: git-creds
+  - name: git-repo
+    value: "repo"
+  - name: result-repo
+    value: "result"
   workspaces:
   - name: shared-data
     volumeClaimTemplate:

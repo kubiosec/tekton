@@ -10,6 +10,10 @@ spec:
     type: string
   - name: git-creds
     type: string
+  - name: git-repo
+    type: string
+  - name: result-repo
+    type: string
   tasks:
     - name: gh-clone
       taskRef:
@@ -18,7 +22,9 @@ spec:
       - name: gh-url
         value: $(params.gh-url)
       - name: git-creds
-        value: $(params.git-creds)     
+        value: $(params.git-creds) 
+      - name: git-repo
+        value: $(params.git-repo)       
       workspaces:
       - name: storage
         workspace: shared-data
@@ -27,6 +33,11 @@ spec:
         name: trivy-scan
       runAfter:
         - gh-clone
+      params:
+      - name: git-repo
+        value: $(params.git-repo)
+      - name: result-repo
+        value: $(params.result-repo)    
       workspaces:
       - name: storage
         workspace: shared-data
@@ -40,6 +51,10 @@ spec:
         value: $(params.gh-url)
       - name: git-creds
         value: $(params.git-creds)     
+      - name: git-repo
+        value: $(params.git-repo)  
+      - name: result-repo
+        value: $(params.result-repo)  
       workspaces:
       - name: storage
         workspace: shared-data
