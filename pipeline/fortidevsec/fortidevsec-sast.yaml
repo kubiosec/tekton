@@ -13,7 +13,7 @@ spec:
   tasks:
     - name: gh-clone
       taskRef:
-        name: gh-clone
+        name: gh-clone-fortidevsec
       params:
       - name: gh-url
         value: $(params.gh-url)
@@ -35,3 +35,6 @@ spec:
         name: cleanup
       runAfter:
         - fortidevsec-sast
+      workspaces:
+      - name: storage
+        workspace: shared-data
