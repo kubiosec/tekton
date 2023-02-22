@@ -8,10 +8,10 @@ spec:
     type: string
   - name: result-repo
     type: string
+    default: result
   workspaces:
   - name: storage
     readOnly: false
-
   steps:
   - name: trivy-scan
     image: kubiosec/trivy:0.37.3
