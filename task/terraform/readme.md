@@ -17,5 +17,5 @@
             key: AWS_SECRET_KEY            
 ```
 ```
-
+kubectl create secret generic aws-creds --from-literal AWS_ACCESS_KEY=xxxxxxx --from-literal AWS_SECRET_KEY=xxxxxxx
 ```
