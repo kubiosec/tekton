@@ -6,6 +6,6 @@ Currently tasks focussing on AWS
 kubectl create secret generic aws-creds --from-literal AWS_ACCESS_KEY_ID=xxxxxxx --from-literal AWS_SECRET_ACCESS_KEY=xxxxxxx
 ```
 ### Next todo's
-- Remove AWS creds from terraforn init task and pipeline
+- Remove AWS creds from terraform init task and pipeline
 - Analyse more 'generic' naming for creds and  --- terraform apply task for aws / azure stragery ...
 
