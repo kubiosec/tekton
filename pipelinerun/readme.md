@@ -15,7 +15,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/Users/xxradar/Dropbox/dev/dev_tekton/data"
+    path: "xxxxxxxxxxxxxxxxxx"
 ```
 ```
 kubeclt apply -f - <<EOF
