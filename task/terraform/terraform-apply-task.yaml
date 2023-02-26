@@ -8,7 +8,7 @@ spec:
     type: string
   - name: aws-creds
     type: string
- workspaces:
+  workspaces:
   - name: storage
     readOnly: false
   steps:
