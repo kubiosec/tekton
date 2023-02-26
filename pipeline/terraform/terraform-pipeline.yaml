@@ -12,7 +12,7 @@ spec:
     type: string
   - name: git-repo
     type: string
-   - name: aws-creds
+  - name: aws-creds
     type: string
   tasks:
     - name: gh-clone
