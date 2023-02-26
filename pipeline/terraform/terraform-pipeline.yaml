@@ -1,0 +1,49 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: terraform-example
+spec:
+  workspaces:
+  - name: shared-data
+  params:
+  - name: gh-url
+    type: string
+  - name: git-creds
+    type: string
+  - name: git-repo
+    type: string
+  tasks:
+    - name: gh-clone
+      taskRef:
+        name: gh-clone
+      params:
+      - name: gh-url
+        value: $(params.gh-url)
+      - name: git-creds
+        value: $(params.git-creds)
+      - name: git-repo
+        value: $(params.git-repo)
+      workspaces:
+      - name: storage
+        workspace: shared-data
+    - name: terraform-init
+      taskRef:
+        name: terraform-init-task
+      params:
+      - name: git-repo
+        value: $(params.git-repo)
+      - name: aws-creds
+        value: $(params.aws-creds)
+      runAfter:
+        - gh-clone
+      workspaces:
+      - name: storage
+        workspace: shared-data
+    - name: cleanup
+      taskRef:
+        name: cleanup
+      runAfter:
+        - fortidevsec-sast
+      workspaces:
+      - name: storage
+        workspace: shared-data
