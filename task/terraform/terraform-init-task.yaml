@@ -6,6 +6,8 @@ spec:
   params:
   - name: git-repo
     type: string
+  - name: aws-creds
+    type: string    
   workspaces:
   - name: storage
     readOnly: false
