@@ -26,5 +26,5 @@ spec:
           name: $(params.aws-creds)
           key: AWS_SECRET_ACCESS_KEY   
     script: |
-      cd $(workspaces.storage.path)/$(params.result-repo)
+      cd $(workspaces.storage.path)/$(params.git-repo)
       terraform apply --auto-approve
