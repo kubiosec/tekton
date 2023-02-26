@@ -14,12 +14,7 @@ spec:
     value: "repo"
   - name: aws-creds
     value: "aws-creds"
-  workspaces:
+  workspaces: 
   - name: shared-data
-    volumeClaimTemplate:
-      spec:
-        accessModes:
-        - ReadWriteOnce
-        resources:
-          requests:
-            storage: 1Gi
+    persistentVolumeClaim:
+      claimName: task-pv-claim
