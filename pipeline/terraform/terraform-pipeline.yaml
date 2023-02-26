@@ -45,7 +45,7 @@ spec:
       taskRef:
         name: cleanup
       runAfter:
-        - fortidevsec-sast
+        - terraform-init
       workspaces:
       - name: storage
         workspace: shared-data
