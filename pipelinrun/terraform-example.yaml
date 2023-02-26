@@ -1,0 +1,25 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+    generateName: terraform-example-run-
+spec:
+  pipelineRef:
+    name: terraform-example
+  params:
+  - name: gh-url
+    value: "https://github.com/xxradar/httpdtoslack.git"
+  - name: git-creds
+    value: git-creds
+  - name: git-repo
+    value: "repo"
+  - name: aws-creds
+    value: "aws-creds"
+  workspaces:
+  - name: shared-data
+    volumeClaimTemplate:
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
