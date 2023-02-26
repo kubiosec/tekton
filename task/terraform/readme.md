@@ -7,5 +7,6 @@ kubectl create secret generic aws-creds --from-literal AWS_ACCESS_KEY_ID=xxxxxxx
 ```
 ### Next todo's
 - Remove AWS creds from terraform init task and pipeline
+- Create destroy task task / task run 
 - Analyse more 'generic' naming for creds and  --- terraform apply task for aws / azure stragery ...
 
