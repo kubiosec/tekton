@@ -6,12 +6,25 @@ spec:
   params:
   - name: git-repo
     type: string
-  workspaces:
+  - name: aws-creds
+    type: string
+ workspaces:
   - name: storage
     readOnly: false
   steps:
   - name: terraform-step
     image: kubiosec/terraform:1.3.9
+    env:
+    - name: AWS_ACCESS_KEY_ID
+      valueFrom:
+        secretKeyRef:
+          name: $(params.aws-creds)
+          key: AWS_ACCESS_KEY_ID
+    - name: AWS_SECRET_ACCESS_KEY
+      valueFrom:
+        secretKeyRef:
+          name: $(params.aws-creds)
+          key: AWS_SECRET_ACCESS_KEY   
     script: |
-      mkdir $(workspaces.storage.path)/$(params.result-repo)
+      cd $(workspaces.storage.path)/$(params.result-repo)
       terraform apply --auto-approve
