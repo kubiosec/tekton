@@ -7,7 +7,7 @@ spec:
     name: terraform-example
   params:
   - name: gh-url
-    value: "https://github.com/xxradar/httpdtoslack.git"
+    value: "https://github.com/xxradar/tf-testing.git"
   - name: git-creds
     value: git-creds
   - name: git-repo
