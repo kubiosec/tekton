@@ -1,0 +1,17 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: terraform-init-task
+spec:
+  params:
+  - name: git-repo
+    type: string
+  workspaces:
+  - name: storage
+    readOnly: false
+  steps:
+  - name: terraform-step
+    image: kubiosec/terraform:1.3.9
+    script: |
+      mkdir $(workspaces.storage.path)/$(params.result-repo)
+      trivy config $(workspaces.storage.path)/$(params.git-repo) -o $(workspaces.storage.path)/$(params.result-repo)/results.txt
