@@ -1,0 +1,34 @@
+### Notes on terraform pipelinerun
+Create some shared storage for terraform accross pipelineruns.
+```
+kubeclt apply -f - <<EOF
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: task-pv-volume
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/Users/xxradar/Dropbox/dev/dev_tekton/data"
+```
+```
+kubeclt apply -f - <<EOF
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: task-pv-claim
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+EOF
+```
