@@ -41,6 +41,19 @@ spec:
       workspaces:
       - name: storage
         workspace: shared-data
+    - name: terraform-apply
+      taskRef:
+        name: terraform-apply-task
+      params:
+      - name: git-repo
+        value: $(params.git-repo)
+      - name: aws-creds
+        value: $(params.aws-creds)
+      runAfter:
+        - terraform-init
+      workspaces:
+      - name: storage
+        workspace: shared-data
     - name: cleanup
       taskRef:
         name: cleanup
