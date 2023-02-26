@@ -17,14 +17,14 @@ spec:
     env:
     - name: AWS_ACCESS_KEY_ID
       valueFrom:
-      secretKeyRef:
-        name: $(params.aws-creds)
-        key: AWS_ACCESS_KEY_ID
+        secretKeyRef:
+          name: $(params.aws-creds)
+          key: AWS_ACCESS_KEY_ID
     - name: AWS_SECRET_ACCESS_KEY
       valueFrom:
-      secretKeyRef:
-        name: $(params.aws-creds)
-        key: AWS_SECRET_ACCESS_KEY            
+        secretKeyRef:
+          name: $(params.aws-creds)
+          key: AWS_SECRET_ACCESS_KEY            
     script: |
       mkdir $(workspaces.storage.path)/$(params.result-repo)
       terraform init
