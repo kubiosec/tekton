@@ -1,0 +1,32 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: terraform-example-destroy
+spec:
+  workspaces:
+  - name: shared-data
+  params:
+  - name: git-repo
+    type: string
+  - name: aws-creds
+    type: string
+  tasks:
+    - name: terraform-destroy
+      taskRef:
+        name: terraform-destroy-task
+      params:
+      - name: git-repo
+        value: $(params.git-repo)
+      - name: aws-creds
+        value: $(params.aws-creds)
+      workspaces:
+      - name: storage
+        workspace: shared-data
+    - name: cleanup
+      taskRef:
+        name: cleanup
+      runAfter:
+        - terraform-destroy-task
+      workspaces:
+      - name: storage
+        workspace: shared-data
