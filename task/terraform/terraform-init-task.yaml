@@ -13,18 +13,7 @@ spec:
     readOnly: false
   steps:
   - name: terraform-step
-    image: kubiosec/terraform:1.3.9
-    env:
-    - name: AWS_ACCESS_KEY_ID
-      valueFrom:
-        secretKeyRef:
-          name: $(params.aws-creds)
-          key: AWS_ACCESS_KEY_ID
-    - name: AWS_SECRET_ACCESS_KEY
-      valueFrom:
-        secretKeyRef:
-          name: $(params.aws-creds)
-          key: AWS_SECRET_ACCESS_KEY            
+    image: kubiosec/terraform:1.3.9          
     script: |
       cd $(workspaces.storage.path)/$(params.git-repo)
       terraform init
