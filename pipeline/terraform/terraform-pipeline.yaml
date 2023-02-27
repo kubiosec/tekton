@@ -58,7 +58,7 @@ spec:
       taskRef:
         name: cleanup
       runAfter:
-        - terraform-init
+        - terraform-apply
       workspaces:
       - name: storage
         workspace: shared-data
