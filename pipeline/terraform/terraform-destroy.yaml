@@ -11,7 +11,7 @@ spec:
   - name: aws-creds
     type: string
   tasks:
-    - name: terraform-destroy
+    - name: terraform-destroy-task
       taskRef:
         name: terraform-destroy-task
       params:
