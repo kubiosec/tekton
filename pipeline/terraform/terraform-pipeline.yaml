@@ -34,8 +34,6 @@ spec:
       params:
       - name: git-repo
         value: $(params.git-repo)
-      - name: aws-creds
-        value: $(params.aws-creds)
       runAfter:
         - gh-clone
       workspaces:
