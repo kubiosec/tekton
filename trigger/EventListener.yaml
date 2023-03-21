@@ -1,0 +1,12 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: EventListener
+metadata:
+  name: pipeline-listener
+spec:
+  serviceAccountName: tekton-robot
+  triggers:
+    - name: pipeline-trigger 
+      bindings:
+      - ref: clone-scan-issue-binding
+      template:
+        ref: clone-scan-issue-template
