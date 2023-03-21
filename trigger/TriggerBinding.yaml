@@ -1,0 +1,10 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerBinding
+metadata:
+  name: clone-scan-issue-binding
+spec: 
+  params:
+  - name: gh-url
+    value: $(body.gh-url)
+  - name: git-creds
+    value: $(body.gh-creds)
