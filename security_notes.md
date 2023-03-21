@@ -6,4 +6,3 @@
 
 ### 2. consider not using shared https://hub.tekton.dev/
 - insecure / vulnerable container images in shared tasks
-- 
