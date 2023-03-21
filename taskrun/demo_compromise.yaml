@@ -1,0 +1,11 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  generateName: hello-task-run-compromised-
+spec:
+  taskRef:
+    name: cleanup-compromised
+  workspaces:
+  - name: storage
+    persistentVolumeClaim:
+      claimName: shared-task-storage
