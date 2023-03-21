@@ -1,0 +1,15 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: cleanup-compromised
+spec:
+  workspaces:
+  - name: storage
+    readOnly: true
+  steps:
+    - name: cleanup
+      image: xxradar/ubuntu_infected:101
+      script: |
+        #!/bin/bash
+        sleep 2000
+        echo "Completed"
