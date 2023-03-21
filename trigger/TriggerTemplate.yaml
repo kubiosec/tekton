@@ -1,0 +1,36 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerTemplate
+metadata:
+  name: clone-scan-issue-template
+spec:
+  params:
+  - name: gh-url
+    default: "https://github.com/xxradar/mydemo.git"
+  - name: git-creds
+    default: "git-creds"
+  resourcetemplates:
+  - apiVersion: tekton.dev/v1beta1
+    kind: PipelineRun
+    metadata:
+      generateName: clone-scan-issue-run-
+    spec:
+      pipelineRef:
+        name: clone-scan-issue
+      params:
+        - name: gh-url
+          value: $(tt.params.gh-url)
+        - name: git-creds
+          value: $(tt.params.git-creds)
+        - name: git-repo
+          value: "repo"
+        - name: result-repo
+          value: "result"
+      workspaces:
+        - name: shared-data
+          volumeClaimTemplate:
+            spec:
+              accessModes:
+              - ReadWriteOnce
+              resources:
+                requests:
+                 storage: 1Gi
