@@ -32,7 +32,10 @@ Note: update `./pipelinerun/clone-scan-issue-run.yaml` referencing an existing r
 kubectl create -f ./pipelinerun/clone-scan-issue-run.yaml
 ```
 ```
-tkn pipelinerun list // logs ... tbc
+tkn pipelinerun list
+```
+```
+tkn pipelinerun logs clone-scan-issue-run-wrsgr
 ```
 ### Permanent Volume
 ```
