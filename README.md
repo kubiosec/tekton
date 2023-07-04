@@ -25,5 +25,22 @@ kubectl create secret generic git-creds --from-literal gh-token=xxxxxxx
 ```
 Note: update `./pipelinerun/clone-scan-issue-run.yaml` referencing an existing repo
 ```
-kubectl run -f ./pipelinerun/clone-scan-issue-run.yaml
+kubectl create -f ./pipelinerun/clone-scan-issue-run.yaml
+```
+### Permanent Volume
+```
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-volume-2
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/Users/xxradar/tekton"
 ```
