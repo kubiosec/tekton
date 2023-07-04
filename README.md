@@ -7,6 +7,10 @@ More information at [https://tekton.dev/docs/pipelines/install/](https://tekton.
 ```
 kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml
 ```
+Install the CLI utility ...
+```
+tbd
+```
 ### Deploy the tasks
 ```
 kubectl apply -f ./task/gh-clone-task.yaml
@@ -26,6 +30,9 @@ kubectl create secret generic git-creds --from-literal gh-token=xxxxxxx
 Note: update `./pipelinerun/clone-scan-issue-run.yaml` referencing an existing repo
 ```
 kubectl create -f ./pipelinerun/clone-scan-issue-run.yaml
+```
+```
+tkn pipelinerun list // logs ... tbc
 ```
 ### Permanent Volume
 ```
