@@ -2,6 +2,11 @@
 
 
 ## Getting started example 
+### Install tekton
+More information at [https://tekton.dev/docs/pipelines/install/](https://tekton.dev/docs/pipelines/install/)
+```
+kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml
+```
 ### Deploy the tasks
 ```
 kubectl apply -f ./task/gh-clone-task.yaml
